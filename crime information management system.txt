@@ -1,0 +1,43 @@
+crimes--crime_id,crime_area,police sation,solved,date,place,desc,victim_num,detail_desc,main_suspect,criminal_c_name,criminal_c_id
+criminal--criminal_id,name,age ,gender,address,identify_mark,area_of_arrest,crime_id
+police -- police_id,age,curr_police_stn
+
+
+
+---------------------------------------------------------------------------
+
+create table crimes
+(
+crime_id int,
+crime_area varchar(20),
+c_police_stn varchar(20),
+solved boolean,
+crime_date date,
+crime_place varchar(20),
+crime_desc varchar(20),
+victim_numbers int,
+crime_detail_desc varchar(20),
+crime_main_suspect
+);
+
+create table criminal
+(
+criminal_id int,
+criminal_name varchar(20),
+criminal_age int,
+criminal_gender varchar(20),
+criminal_address varchar(20),
+criminal_identify_mark varchar(20),
+criminal_area_of_arrest varchar(20),
+criminal_crime_id int,
+foreign key (criminal_crime_id) references crimes (crime_id)
+);
+
+create table police
+(
+police_id int,
+police_name,
+police_gender,
+police_age,
+police_curr_police_stn
+);
