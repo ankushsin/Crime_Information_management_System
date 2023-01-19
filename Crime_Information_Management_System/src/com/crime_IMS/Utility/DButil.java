@@ -17,7 +17,7 @@ public static Connection provideConnection() {
 			e.printStackTrace();
 		}
 		
-		String url = "jdbc:mysql://localhost:3306/tms";
+		String url = "jdbc:mysql://localhost:3306/cims";
 		
 		 try {
 			conn = DriverManager.getConnection(url, "root","1440");
