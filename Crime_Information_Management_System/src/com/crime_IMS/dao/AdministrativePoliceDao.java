@@ -11,7 +11,7 @@ import com.crime_IMS.bean.PoliceBean;
 
 public interface AdministrativePoliceDao {
 	
-	public PoliceBean loginPolice(String name, String password) throws PoliceException;
+        public AdministratorBean loginPolice(String name, String password) throws PoliceException;
 	
 	public List<CrimesBean> SolvedCases() throws CrimeException ;
 	
@@ -26,6 +26,8 @@ public interface AdministrativePoliceDao {
 	public String RegisterNewCriminal(CriminalBean criminal) throws CriminalException;
 	
 	public String RegisterNewPolice(PoliceBean police) throws PoliceException;
+	
+	public List<CrimesBean> getAllTheCrimesCasesinCertaInTimeInterval(String startdate, String enddate) throws CrimeException ;
 
 	
 
