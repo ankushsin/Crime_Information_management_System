@@ -16,35 +16,35 @@ import com.crime_IMS.bean.CriminalBean;
 import com.crime_IMS.bean.PoliceBean;
 
 public class AdministrativePoliceDaoImpl implements AdministrativePoliceDao {
-
+	
+	
+	
 	@Override
-	public PoliceBean loginPolice(String name, String password) throws PoliceException {
-	    PoliceBean police = null;
+	public AdministratorBean loginPolice(String name, String password) throws PoliceException {
+		
+		AdministratorBean admin = null;
 		
 		try(Connection conn = DButil.provideConnection()) {
 			
-			
-            PreparedStatement ps= conn.prepareStatement("select * from police where police_name=? AND police_id_password = ?");
-			
-			ps.setString(1, name);
-			ps.setString(2, password);
-			
-			ResultSet rs= ps.executeQuery();
-			
-			if(rs.next()) {
+			 PreparedStatement ps= conn.prepareStatement("select * from administrator_police where Administrator_name=? AND Administrator_password = ?");
 				
-				 police = new PoliceBean();
-				 
-				 police.setPolice_name(rs.getString("police_name"));
-				 police.setPolice_id(rs.getInt("police_id"));
-				 police.setPolice_gender(rs.getString("police_gender"));
-				 police.setPolice_age(rs.getInt("police_age"));
-				 police.setPolice_curr_police_stn(rs.getString("police_curr_police_stn"));
-				 police.setPolice_id_password(rs.getString("police_id_password"));
+				ps.setString(1, name);
+				ps.setString(2, password);
 				
-			}else {
-				throw new PoliceException("Invalid Username or password..... :( Register yourself first");
-			}
+				ResultSet rs= ps.executeQuery();
+				
+				if(rs.next()) {
+					admin = new AdministratorBean();
+					
+					admin.setAdministrator_name(rs.getString("Administrator_name"));
+					admin.setAdministrator_id(rs.getInt("Administrator_id"));
+					admin.setAdministrator_password(rs.getString("Administrator_password"));
+					admin.setAdministrator_rank(rs.getString("Administrator_rank"));
+					
+				}else {
+					throw new PoliceException("Invalid Username or password..... :( Register yourself first");
+				}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
@@ -52,7 +52,8 @@ public class AdministrativePoliceDaoImpl implements AdministrativePoliceDao {
 		
 		
 		
-		return police;
+		return admin;
+
 	}
 
 	@Override
@@ -142,8 +143,32 @@ public class AdministrativePoliceDaoImpl implements AdministrativePoliceDao {
 
 	@Override
 	public String UpdateUnsolveToSolve(CrimesBean crimes) throws CrimeException {
-		// TODO Auto-generated method stub
-		return null;
+		String message = "Sorry no change occurs";
+		
+		
+		try(Connection conn = DButil.provideConnection()) {
+
+			PreparedStatement ps= conn.prepareStatement
+					("update crimes set solved = true,crime_main_suspect = ? where crime_id = ? ;");
+			
+			ps.setString(1, crimes.getCrime_main_suspect());
+			ps.setInt(2, crimes.getCrime_id());
+			
+			int x= ps.executeUpdate();
+			
+			 if(x > 0)
+				message = "Crime Status has been changed successfully............:)";
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
+		}
+		
+		
+		
+		
+		return message;
 	}
 
 	@Override
@@ -260,8 +285,82 @@ public class AdministrativePoliceDaoImpl implements AdministrativePoliceDao {
 
 	@Override
 	public String RegisterNewPolice(PoliceBean police) throws PoliceException {
-		// TODO Auto-generated method stub
-		return null;
+		String message = "Police Not Registered";
+		
+		
+		try(Connection conn = DButil.provideConnection()) {
+			
+			PreparedStatement ps= conn.prepareStatement
+					("insert into police values (?,?,?,?,?,?)");
+			
+			ps.setInt(1, police.getPolice_id());
+			ps.setString(2, police.getPolice_name());
+			ps.setString(3, police.getPolice_gender());
+			ps.setInt(4, police.getPolice_age());
+			ps.setString(5, police.getPolice_curr_police_stn());
+			ps.setString(6, police.getPolice_id_password());
+			
+			int x= ps.executeUpdate();
+			
+			 if(x > 0)
+				message = "Police has Registered Sucessfully in the database..  ..........:)";
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		return message;
 	}
+
+	@Override
+	public List<CrimesBean> getAllTheCrimesCasesinCertaInTimeInterval(String startdate, String enddate) throws CrimeException {
+		List<CrimesBean> Crimes = new ArrayList<>(); 
+		
+        try(Connection conn = DButil.provideConnection()) {
+			
+			PreparedStatement ps= conn.prepareStatement("select * from crimes where crime_date between ? and ?");
+			
+			ps.setString(1, startdate);
+			ps.setString(2, enddate);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()) {
+				
+				int crime_id = rs.getInt("crime_id");
+				String crime_area = rs.getString("crime_area");
+				String c_police_stn = rs.getString("c_police_stn");
+				boolean solved = rs.getBoolean("solved");
+				String crime_date = rs.getString("crime_date");
+				String crime_place = rs.getString("crime_place");
+				String crime_desc = rs.getString("crime_desc");
+				int victim_numbers = rs.getInt("victim_numbers");
+				String crime_detail_desc = rs.getString("crime_detail_desc");
+				String crime_main_suspect = rs.getString("crime_main_suspect");
+				
+				CrimesBean c = new CrimesBean(crime_id,crime_area,c_police_stn,solved,crime_date,crime_place,crime_desc,victim_numbers,crime_detail_desc,crime_main_suspect);
+				Crimes.add(c);
+				
+			}
+			
+			if(Crimes.size() == 0) {
+				throw new CrimeException("There are no cases present in this time interval");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new CrimeException(e.getMessage());
+		}
+		
+		
+		
+		
+		return Crimes;
+	}
+
 
 }
