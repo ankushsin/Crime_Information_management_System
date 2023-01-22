@@ -17,5 +17,5 @@ The information about the criminal is also to be maintained. The information wil
 Searching facility for criminals and crimes is also available in this software. The status(solved or not solved) of each crime is also  maintained in this software. After solving the crime, the status will be changed. 
 
 The software will also display the crimes and criminals area wise or police station wise. The Software will produce report for -
-A. Number of solved and unsolved crime.
-B. Number of crimes recorded in the current month.
+1. Number of solved and unsolved crime.
+2. Number of crimes recorded in the current month.
