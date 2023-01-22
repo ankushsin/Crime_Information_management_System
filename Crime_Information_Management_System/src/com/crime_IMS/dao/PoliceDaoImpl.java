@@ -254,4 +254,51 @@ public class PoliceDaoImpl implements PoliceDao {
 		return message;
 	}
 
+	@Override
+	public List<CrimesBean> getAllTheCrimesCasesinCertaInTimeInterval(String startdate , String enddate) throws CrimeException {
+		List<CrimesBean> Crimes = new ArrayList<>(); 
+		
+           try(Connection conn = DButil.provideConnection()) {
+			
+			PreparedStatement ps= conn.prepareStatement("select * from crimes where crime_date between ? and ?");
+			
+			ps.setString(1, startdate);
+			ps.setString(2, enddate);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			
+			while(rs.next()) {
+				
+				int crime_id = rs.getInt("crime_id");
+				String crime_area = rs.getString("crime_area");
+				String c_police_stn = rs.getString("c_police_stn");
+				boolean solved = rs.getBoolean("solved");
+				String crime_date = rs.getString("crime_date");
+				String crime_place = rs.getString("crime_place");
+				String crime_desc = rs.getString("crime_desc");
+				int victim_numbers = rs.getInt("victim_numbers");
+				String crime_detail_desc = rs.getString("crime_detail_desc");
+				String crime_main_suspect = rs.getString("crime_main_suspect");
+				
+				CrimesBean c = new CrimesBean(crime_id,crime_area,c_police_stn,solved,crime_date,crime_place,crime_desc,victim_numbers,crime_detail_desc,crime_main_suspect);
+				Crimes.add(c);
+				
+			}
+			
+			if(Crimes.size() == 0) {
+				throw new CrimeException("There are no cases present in this time interval");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new CrimeException(e.getMessage());
+		}
+		
+		
+		
+		
+		return Crimes;
+	}
+
+
 }
