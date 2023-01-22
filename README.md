@@ -19,3 +19,6 @@ Searching facility for criminals and crimes is also available in this software. 
 The software will also display the crimes and criminals area wise or police station wise. The Software will produce report for -
 1. Number of solved and unsolved crime.
 2. Number of crimes recorded in the current month.
+
+
+<img src="https://github.com/ankushsin/winged-circle-872/blob/main/images/diag1.png?raw=true">
