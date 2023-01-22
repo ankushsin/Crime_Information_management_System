@@ -23,6 +23,8 @@ public interface PoliceDao {
 	
 	public String RegisterNewCriminal(CriminalBean criminal) throws CriminalException;
 	
+	public List<CrimesBean> getAllTheCrimesCasesinCertaInTimeInterval(String startdate, String enddate) throws CrimeException ;
+	
 	
 	
 	
