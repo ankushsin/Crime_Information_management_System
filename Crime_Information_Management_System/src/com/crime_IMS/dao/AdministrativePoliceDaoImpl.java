@@ -11,14 +11,13 @@ import com.crime_IMS.Exception.CrimeException;
 import com.crime_IMS.Exception.CriminalException;
 import com.crime_IMS.Exception.PoliceException;
 import com.crime_IMS.Utility.DButil;
+import com.crime_IMS.bean.AdministratorBean;
 import com.crime_IMS.bean.CrimesBean;
 import com.crime_IMS.bean.CriminalBean;
 import com.crime_IMS.bean.PoliceBean;
 
 public class AdministrativePoliceDaoImpl implements AdministrativePoliceDao {
-	
-	
-	
+
 	@Override
 	public AdministratorBean loginPolice(String name, String password) throws PoliceException {
 		
@@ -361,6 +360,5 @@ public class AdministrativePoliceDaoImpl implements AdministrativePoliceDao {
 		
 		return Crimes;
 	}
-
 
 }
