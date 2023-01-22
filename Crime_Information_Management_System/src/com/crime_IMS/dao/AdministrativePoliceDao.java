@@ -5,13 +5,14 @@ import java.util.List;
 import com.crime_IMS.Exception.CrimeException;
 import com.crime_IMS.Exception.CriminalException;
 import com.crime_IMS.Exception.PoliceException;
+import com.crime_IMS.bean.AdministratorBean;
 import com.crime_IMS.bean.CrimesBean;
 import com.crime_IMS.bean.CriminalBean;
 import com.crime_IMS.bean.PoliceBean;
 
 public interface AdministrativePoliceDao {
 	
-        public AdministratorBean loginPolice(String name, String password) throws PoliceException;
+	public AdministratorBean loginPolice(String name, String password) throws PoliceException;
 	
 	public List<CrimesBean> SolvedCases() throws CrimeException ;
 	
