@@ -25,6 +25,7 @@ public interface PoliceDao {
 	
 	public List<CrimesBean> getAllTheCrimesCasesinCertaInTimeInterval(String startdate, String enddate) throws CrimeException ;
 	
+
 	
 	
 	
