@@ -300,5 +300,4 @@ public class PoliceDaoImpl implements PoliceDao {
 		return Crimes;
 	}
 
-
 }
