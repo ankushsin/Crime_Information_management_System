@@ -69,7 +69,7 @@ public class Demo {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(num !=1 && num!=2) {
+		}else if(num !=1 || num!=2) {
 			System.out.println("You have entered the wrong input kindly enter the correct input");
 			System.out.println("\n");
 			System.out.println("\n");
