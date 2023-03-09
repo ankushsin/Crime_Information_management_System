@@ -20,7 +20,7 @@ The software will also display the crimes and criminals area wise or police stat
 1. Number of solved and unsolved crime.
 2. Number of crimes recorded in the current month.
 
-** TECHNOLOGY USED
+<b>TECHNOLOGY USED</b>
 1. JAVA
 2. JDBC
 3. SPRING TOOL SUITE
