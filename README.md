@@ -29,12 +29,12 @@ The software will also display the crimes and criminals area wise or police stat
 4. MySQL
 ----------------------------------------------------------------------------------------------------------
 
-                                  <b> ER DIAGRAM </b>
+                                  ER DIAGRAM 
 
 <img src="https://github.com/ankushsin/winged-circle-872/blob/main/images/diag1.png?raw=true">
 
 
 ----------------------------------------------------------------------------------------------------------
-                                <b> FLOW DIAGRAM </b>
+                                 FLOW DIAGRAM 
 
 <img src="https://github.com/ankushsin/winged-circle-872/blob/main/images/Untitled%20Diagram.drawio%20(2).png?raw=true">
