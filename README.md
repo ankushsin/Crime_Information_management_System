@@ -1,7 +1,7 @@
 # CRIME INFORMATION MANAGEMENT SYSTEM
 
 The main aim of this system is to maintain and manage the detail information of the crime happened in  an  area under a particular police station. This software will be used by the police officials in the Police station. Following information will be stored in this software-
-        1. Date and Place of the Crime.
+        1. Date and Place of the Crime./n
         2. Description of the crime i.e Robbery or Theft or Homicide etc.
         3. Victims.
         4. Detail description of the crime that is in case of Robbery, the wealth that was stolen or in case of Homicide, the person(s) killed etc.
